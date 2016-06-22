@@ -215,7 +215,7 @@ class mcollective::server(
       purge   => true,
       force   => true,
       recurse => true,
-      source  => 'puppet:///modules/mcollective/ssl/clients',
+      source  => "${mcollective::ssl_clients_keys_source}",
       require => Package[ $package ],
       before  => Service[ $service ],
     }
@@ -233,7 +233,7 @@ class mcollective::server(
         mode    => '0400',
         links   => follow,
         replace => true,
-        source  => 'puppet:///modules/mcollective/ssl/server/private.pem',
+        source  => "${mcollective::ssl_private_key_source}",
         require => [ Package[ $package ], File["${etcdir}/ssl/server/public.pem"] ],
         before  => Service[ $service ],
       }
