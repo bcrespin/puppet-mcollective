@@ -57,6 +57,14 @@
 # [*registerinterval*]
 #   How often to resend registration information in seconds. Default 600
 #
+# [*ssl_public_key_source*]
+# Values : puppet:///modules/mcollective/ssl/server/public.pem (default)
+# from where to grab the content of the ssl public key shared, relevant if  security_provider = ssl
+#
+# [*ssl_private_key_source*]
+# Values : puppet:///modules/mcollective/ssl/server/private.pem (default)
+# from where to grab the content of the ssl private key shared, relevant if  security_provider = ssl
+#
 # === Examples
 #
 # node default {
@@ -82,22 +90,24 @@ class mcollective(
   $stomp_version        =  'latest',
 
   # Puppet v3 will look for values in Hiera before falling back to defaults defined here
-  $server_user          =  'server',
-  $server_password      = undef,
-  $client_user          =  'client',
-  $client_password      = undef,
-  $broker_user          =  'admin',
-  $broker_password      = undef,
-  $connector            = 'activemq',
-  $connector_ssl        = false,
-  $connector_ssl_type   = 'anonymous',
-  $port                 = undef,
-  $hosts,               # array required - no default value
-  $collectives          = ['mcollective'],
-  $registerinterval     = 600,
-  $security_provider    = 'psk',
-  $psk_key              = undef,   # will be checked if provider = psk
-  $psk_callertype       = 'uid',
+  $server_user            =  'server',
+  $server_password        = undef,
+  $client_user            =  'client',
+  $client_password        = undef,
+  $broker_user            =  'admin',
+  $broker_password        = undef,
+  $connector              = 'activemq',
+  $connector_ssl          = false,
+  $connector_ssl_type     = 'anonymous',
+  $port                   = undef,
+  $hosts,                 # array required - no default value
+  $collectives            = ['mcollective'],
+  $registerinterval       = 600,
+  $security_provider      = 'psk',
+  $psk_key                = undef,   # will be checked if provider = psk
+  $psk_callertype         = 'uid',
+  $ssl_public_key_source  = 'puppet:///modules/mcollective/ssl/server/public.pem'
+  $ssl_private_key_source = 'puppet:///modules/mcollective/ssl/server/private.pem'
 )
   inherits mcollective::params {
 
@@ -152,7 +162,7 @@ class mcollective(
         mode    => '0444',
         links   => follow,
         replace => true,
-        source  => 'puppet:///modules/mcollective/ssl/server/public.pem',
+        source  => "${ssl_public_key_source]",
       }
     }
   }
