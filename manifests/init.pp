@@ -167,7 +167,7 @@ class mcollective(
         mode    => '0444',
         links   => follow,
         replace => true,
-        source  => "${ssl_public_key_source]",
+        source  => "${ssl_public_key_source}",
       }
     }
   }
