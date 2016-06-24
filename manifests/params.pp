@@ -55,6 +55,7 @@ class mcollective::params {
     /(?i-mx:redhat)/  => 'mcollective',
     /(?i-mx:debian)/  => 'mcollective',
     /(?i-mx:freebsd)/ => 'mcollectived',
+    /(?i-mx:openbsd)/ => 'mcollectived',
     default           => 'mcollective-client',
   }
 
