@@ -33,6 +33,7 @@ class mcollective::params {
     /(?i-mx:redhat)/  => 'rubygem-stomp',
     /(?i-mx:debian)/  => 'ruby-stomp',
     /(?i-mx:freebsd)/ => 'devel/rubygem-stomp',
+    /(?i-mx:openbsd)/ => undef,
     default           => 'rubygem-stomp',
   }
 
