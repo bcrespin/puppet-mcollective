@@ -10,6 +10,7 @@ class mcollective::params {
       /(?i-mx:redhat)/  => '/etc/mcollective',
       /(?i-mx:debian)/  => '/etc/mcollective',
       /(?i-mx:freebsd)/ => '/usr/local/etc/mcollective',
+      /(?i-mx:openbsd)/ => '/etc/mcollective',
       default           => '/etc/puppetlabs/mcollective',
     }
   }
@@ -23,6 +24,7 @@ class mcollective::params {
     /(?i-mx:redhat)/  => '/usr/libexec/mcollective',
     /(?i-mx:debian)/  => '/usr/share/mcollective/plugins',
     /(?i-mx:freebsd)/ => '/usr/local/share',
+    /(?i-mx:openbsd)/ => '/usr/local/libexec/mcollective',
     default           => '/usr/libexec/mcollective',
   }
 
