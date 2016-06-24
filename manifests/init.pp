@@ -140,9 +140,12 @@ class mcollective(
     $_port = $connector_ssl ? { true => 61614, default => 61613 }
   }
 
-  # Ensure that the common dependency is up to date
-  package { $stomp_package:
-    ensure => $stomp_version,
+  if ( $stomp_package != undef )
+  {
+    # Ensure that the common dependency is up to date
+    package { $stomp_package:
+      ensure => $stomp_version,
+    }
   }
 
   # ensure the ssl directory exists for the lient and server modules
